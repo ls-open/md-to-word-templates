@@ -1,0 +1,25 @@
+[
+  {
+    "id": "cn-generic-thesis-master",
+    "name": "通用中文学位论文（硕士）",
+    "org": "通用",
+    "kind": "thesis",
+    "degree": "master",
+    "spec_year": 2023,
+    "lang": "zh",
+    "state": "current",
+    "source": "按国内多数高校研究生院通行要求整理，无单一来源文件",
+    "updated": "2026-11-03",
+    "verified_with": "3.2.0",
+    "maintainers": [
+      "ls-open"
+    ],
+    "unit": "",
+    "supersedes": "",
+    "aliases": [],
+    "cover_sections": 0,
+    "path": "templates/cn-generic-thesis-master",
+    "raw_format": "https://raw.githubusercontent.com/ls-open/md-to-word-templates/main/templates/cn-generic-thesis-master/format.txt",
+    "raw_sample": "https://raw.githubusercontent.com/ls-open/md-to-word-templates/main/templates/cn-generic-thesis-master/sample.md"
+  }
+]

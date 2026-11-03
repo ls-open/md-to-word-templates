@@ -1,0 +1,9 @@
+out/
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+
+# 学校模板原件不入库（版权在对方），本地放一份 cover.docx 就能跑验真
+cover.docx
+cover.pdf

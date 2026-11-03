@@ -1,0 +1,44 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 22 * * 1,4"      # 每周二、五 06:00（北京时间）
+  workflow_dispatch:
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  templates:
+    name: 模板导出（pin 版本）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "md-to-word==3.2.0"
+      - run: python scripts/check.py
+      - name: 上传渲染结果供人工核验
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-docx
+          path: out/*.docx
+          if-no-files-found: warn
+
+  upstream:
+    name: 引擎 main（提前发现引擎改坏模板）
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "git+https://github.com/ls-open/md-to-word@main"
+      - run: python scripts/check.py
