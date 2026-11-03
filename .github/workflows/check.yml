@@ -23,7 +23,7 @@ jobs:
           python-version: "3.12"
       # 包名是 md-to-word-docx（命令叫 md-to-word）。发版后把 pin 提到新版本：
       # 忘了提不会立刻出事，每周的 upstream 任务会对着引擎 main 跑。
-      - run: pip install "md-to-word-docx==3.2.0"
+      - run: pip install "md-to-word-docx==3.3.0"
       - run: python scripts/check.py
       - name: 上传渲染结果供人工核验
         if: always()
