@@ -47,11 +47,19 @@ cover_sections: 3      # 底模前 3 节是封面/声明，原样保留
 md-to-word sample.md -f format.txt --base-template cover.docx --keep-pages 6 -o /tmp/x.docx
 ```
 
-`--keep-pages` 会告诉你「前 6 页 = 前 3 节」，把那个节数写进 `cover_sections`。之后 CI 只要发现目录里有
-`cover.docx`，就会用 `--base-template` 跑一遍并**逐页验真**；没有这个文件（别人的机器、GitHub Actions）就只跑
-无底模的那一遍，并在头部声明不为 0 时提示缺文件。
+`--keep-pages` 会告诉你「前 6 页 = 前 3 节」，把那个节数写进 `cover_sections`。
 
-这是刻意的：**库不托管学校模板，但托管"这份模板该怎么用"**。
+**CI 不会验这条路，也验不了**：`cover.docx` 被 `.gitignore` 挡住，GitHub Actions 拿到的仓库里从来没有它。
+所以带封面的模板，验真只在你自己机器上发生——本地跑
+
+```bash
+python3 scripts/check.py --strict      # 目录里有 cover.docx 时会自动带上 --base-template
+```
+
+把结果贴进 PR 描述里。别人复核时也只能靠这个，因为原件同样不在他们手上。
+
+这是刻意的：**库不托管学校模板，但托管"这份模板该怎么用"**——`cover_sections` 是给人看的用法说明，
+不是 CI 的准入条件。
 
 ## 学院粒度
 

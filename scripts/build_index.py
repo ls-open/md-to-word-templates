@@ -70,11 +70,8 @@ def load() -> tuple[list[dict], list[str]]:
             errors.append(f"{folder.name}: degree={entry['degree']!r} 不在 {sorted(DEGREES)}")
         if entry["state"] not in STATES:
             errors.append(f"{folder.name}: state={entry['state']!r} 不在 {sorted(STATES)}")
-        if entry["cover_sections"] and not (folder / "cover.docx").is_file():
-            errors.append(
-                f"{folder.name}: 声明了 cover_sections={entry['cover_sections']}，"
-                f"但目录里没有 cover.docx（学校模板不入库，但要放在本地才验得了）"
-            )
+        # cover_sections 是**用法元数据**，不是库里能验的东西：学校原件不入库，
+        # 也就不可能出现在 CI 里。它只说明"这份模板是配着学校原件用的，前置件占 N 节"。
         if not isinstance(entry["maintainers"], list) or not entry["maintainers"]:
             errors.append(f"{folder.name}: maintainers 必须是非空列表")
         for needed in ("format.txt", "sample.md"):
