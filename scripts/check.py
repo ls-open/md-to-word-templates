@@ -111,7 +111,7 @@ def export(template: Path) -> tuple[bool, str]:
     target = OUT / f"{template.name}.docx"
     cmd = [sys.executable, "-m", "md_to_word", "sample.md", "-f", "format.txt", "-o", str(target)]
     if (template / "cover.docx").is_file():
-        cmd[3:3] = ["--base", "cover.docx"]
+        cmd[3:3] = ["--base-template", "cover.docx"]
         for readme in (template / "README.md",):
             m = re.search(r"^cover_sections:\s*(\d+)", readme.read_text(encoding="utf-8"), re.M)
             if m:

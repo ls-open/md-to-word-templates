@@ -44,11 +44,11 @@ cover_sections: 3      # 底模前 3 节是封面/声明，原样保留
 自己把学校模板另存为 `templates/<id>/cover.docx`（`.gitignore` 里已忽略），本地跑一次：
 
 ```bash
-md-to-word sample.md -f format.txt --base cover.docx --keep-pages 6 -o /tmp/x.docx
+md-to-word sample.md -f format.txt --base-template cover.docx --keep-pages 6 -o /tmp/x.docx
 ```
 
 `--keep-pages` 会告诉你「前 6 页 = 前 3 节」，把那个节数写进 `cover_sections`。之后 CI 只要发现目录里有
-`cover.docx`，就会用 `--base` 跑一遍并**逐页验真**；没有这个文件（别人的机器、GitHub Actions）就只跑
+`cover.docx`，就会用 `--base-template` 跑一遍并**逐页验真**；没有这个文件（别人的机器、GitHub Actions）就只跑
 无底模的那一遍，并在头部声明不为 0 时提示缺文件。
 
 这是刻意的：**库不托管学校模板，但托管"这份模板该怎么用"**。

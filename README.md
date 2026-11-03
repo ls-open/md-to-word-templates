@@ -5,6 +5,9 @@
 
 引擎在 [ls-open/md-to-word](https://github.com/ls-open/md-to-word)。
 
+**Agent 接入**：检索与使用写在同一份 [AGENTS.md](AGENTS.md) 里——怎么从 `index.json` 选、两个文件
+怎么一起用、什么时候不该用。人往下看即可。
+
 ## 取一份模板
 
 看 [INDEX.md](INDEX.md) 找到你需要的目录，取两个文件：
