@@ -7,3 +7,6 @@ __pycache__/
 # 学校模板原件不入库（版权在对方），本地放一份 cover.docx 就能跑验真
 cover.docx
 cover.pdf
+
+# 封面实验的临时产物：含学校模板的派生文件，不公开
+.cover-experiment/
